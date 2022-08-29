@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <title>50ProjectsIn50Days</title>
+</head>
+<body>
+<article>
+  <div id="div1"   class = "img"
+      style = "background-image: url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
+    <h3>Explore the world</h3>
+  </div>
+  <div id="div2"    class = "img"
+      style = "background-image: url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
+    <h3>Explore the world</h3>
+  </div>
+  <div id="div3"  class = "img"
+      style = "background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80');">
+
+    <h3>Explore the world</h3>
+  </div>
+  <div id="div4"   class = "img active"
+      style = "background-image: url('https://images.unsplash.com/photo-1551009175-8a68da93d5f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80');">
+    <h3>Explore the world</h3>
+  </div>
+  <div id="div5" class = "img"
+    style = "background-image:url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');">
+    <h3>Explore the world</h3>
+  </div>
+</article>
+</body>
+<style>
+  *{
+    box-sizing: border-box;
+  }
+  body {
+     /*对容器内元素在竖直方向上进行调整*/
+     align-items:center;
+     /*使元素水平位置上居中*/
+     justify-content: center;
+     /*设置为弹性盒子布局*/
+     display:flex;
+     /*溢出部分隐藏*/
+     overflow: hidden;
+     margin:0;
+   }
+  article {
+    display: flex;
+    /*在未给出盒子空间大小的情况下元素不会显示*/
+    width:90vw;
+    /*height: 80vh;*/
+  }
+  .img {
+     height: 80vh;
+     /*width:*/
+     /*这个属性似乎没有作用*/
+     background-size: cover;
+     /*设置背景图片居中*/
+     background-position: center;
+     color: white;
+     /*让光标移动到元素上时显示为手指*/
+     cursor: pointer;
+     /*flex:0.5;*/
+     margin:10px;
+     border-radius: 20px;
+     position: relative;
+     top:50px;
+     flex:0.1;
+   }
+  .img.active {
+    flex:2;
+    color: white;
+    transition:all 1000ms ease-in;
+  }
+  .img.active>h3{
+    opacity: 1;
+    transition:opacity 700ms ease-in;
+  }
+  .img h3 {
+    position: absolute;
+    font-size: 25px;
+    bottom: 10px;
+    margin:0;
+    /*设置文字透明度,将非active状态的文字透明度设置0*/
+    opacity:0;
+  }
+</style>
+<script>
+  //按类名索取对象,索取元素时类名前要加.
+  const panels = document.querySelectorAll('.img');
+  panels.forEach(panel=>{
+    panel.addEventListener('click',()=>{
+      removeActive();
+      panel.classList.add('active')
+    })
+  })
+  function removeActive(){
+    panels.forEach(panel=>{
+      panel.classList.remove('active')
+    })
+  }
+</script>
+</html>
