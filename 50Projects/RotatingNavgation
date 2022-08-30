@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RotatingNavgatin</title>
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin:0;
+    }
+    body {
+        background-color: #333;
+        overflow-x: hidden;
+        margin:0px;
+    }
+    .container {
+        background-color: #f4f4f4;
+        /*设置旋转中心点*/
+        transform-origin: top left;
+        /*设置宽度为可见可见窗口宽度,这一点对于实现旋转效果很重要*/
+        width:100vw;
+        /*为什么要设置minheight?????*/
+        min-height: 100vh;
+        /*margin-left:100px;*/
+        /*margin-right: 100px;*/
+        /*margin-top: 0;*/
+        padding:100px;
+        /*设置动画效果*/
+        transition: all 500ms linear;
+    }
+
+
+    img {
+        margin:20px 0px;
+        width:100%;
+        height: auto;
+    }
+
+    /*当container容器里有show-aside标签时会进行旋转*/
+    /*当container容器有了show-aside类时旋转-20度,这时会带动上边的按钮一起旋转*/
+    .container.show-aside {
+        rotate:-20deg;
+    }
+    /*按钮在旋转20度的基础之上,再旋转70度*/
+    .circle-container.show-aside {
+        rotate:-70deg;
+    }
+    /*将右上角导航按钮设置为圆形*/
+    nav {
+        position:fixed;
+        top:-100px;
+        left:-100px;
+    }
+
+    .circle-container {
+        background-color: #038580;
+        height:200px;
+        width:200px;
+        border-radius: 50%;
+        transition: all 500ms linear;
+        /*transition-delay: 400ms;*/
+    }
+
+    #open,#close {
+        cursor: pointer;
+        /*原项目对button的定位是absolute,对父元素来进行偏移*/
+        position:absolute;
+        z-index: 100;
+        top:50%;
+        left:50%;
+        /*height: 100px;*/
+        border:none;
+        /*background-color: #038580;*/
+        /*将按钮设置为透明背景*/
+        background:transparent;
+        font-size: 22px;
+    }
+    #open {
+        /*top:130px;*/
+        /*left:130px;*/
+        /*top:65%;*/
+        left:60%;
+    }
+
+    #close {
+        top:60%;
+        left:50%;
+        rotate:90deg;
+        transform-origin: top left;
+    }
+
+    .container.show-aside+aside {
+        position: fixed;
+    }
+
+    .container.show-aside+aside ul li{
+        tranform:translateX(0);
+        /*transition-delay:300ms;*/
+    }
+    /*li {*/
+    /*    color: white;*/
+    /*    !*margin:20px 0;*!*/
+    /*    transform:translateX(-100%);*/
+    /*    !*font-size: 20px;*!*/
+    /*    margin-right: 10px;*/
+    /*}*/
+    /**
+    *在这里有个问题,为什么aside会出现在container的底下?
+    *1.body设置了overflow-x:hidden;,因为container的宽度是100vw,所以会掩盖住aside
+    *2.为aside之中的li设置了
+    */
+    aside {
+        /*设置为固定定位*/
+        position:fixed;
+        bottom: 40px;
+        left:0;
+        /*top:500px;*/
+        z-index: 100;
+    }
+    aside ul {
+        list-style-type: none;
+        padding-left:30px;
+        rotate:none;
+    }
+    aside ul li {
+        text-transform: uppercase;
+        color:#fff;
+        /*设置间隔*/
+        margin:40px 0;
+        transform:translateX(-100%);
+        /*添加动画*/
+        transition:all 500ms ease-in;
+    }
+    /*使用相邻兄弟选择器,当container容器添加了show-aside属性时,将几个li回复到原来的位置*/
+    .container.show-aside+aside ul li+li {
+        transform:translateX(25%);
+    }
+    .container.show-aside+aside ul li+li+li {
+        transform:translateX(50%);
+    }
+    .container.show-aside+aside ul li{
+        transform:translateX(0);
+    }
+    a {
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+    }
+    .header h2 {
+        font-size: 30px;
+    }
+    .header p{
+        font-size: 14px;
+        font-weight: 100;
+    }
+    .header{
+        margin-bottom: 30px;
+    }
+
+
+
+</style>
+
+<body>
+ <div class = "container">
+     <nav>
+         <div class = "circle-container">
+             <button id = "open">开</button>
+             <button id="close">关</button>
+         </div>
+     </nav>
+     <article>
+         <div class  = 'rotate'>
+             <div class = 'header'>
+                 <h2 class = "title">永恒和一日</h2>
+                 <p id = "author">moonchild</p>
+             </div>
+             <div class="content">
+                 <p>
+                     作家史铁生说，记忆，是一个牢笼，印象是牢笼以外的天空。影片中的诗人如同一个入侵者一次又一次的穿越时空，寻找失去的妻子，寻找记忆中的自己，寻找爱的归宿。也许是为了弥补，也许是为了倾诉，也许只是为了安慰自己那颗已经经不起流浪煎熬的心。那些记忆中的印象关于爱情，关于母爱，关于童年，或许已成为历史，或许从来就没有发生过，只存在于诗人的冥想之中。恰如庄生梦蝶，到底是诗人在记忆里，还是记忆在诗人的心中？又是什么在虚空之中划清了一道界限把这两个世界活活分离？
+                     生命是什么？生命是一根蜡烛，小心的保护它，就会空有岁月；不如恣情燃烧，放出双倍的光和热。死亡又是什么？死亡是生命的一扇窗。死亡对于敢于面对它的人是不存在的。死亡只吞噬怯懦者。你越是活生生，死亡便离你越远。
+                     爱是什么？爱像冥冥中的一盏灯，照耀人的灵魂，直到生和死相遇的那一天。然而在我们活生生的时候，可以不抓紧生命，可以挥霍时间，可以不讨论哲学，也可以不讨论明天。但我们不能不学会爱，学会善待自己身边的人，学会与人相处，学会理解和宽容。当深爱着自己的人感受到痛苦，我们不能放任自己而对进入他们的生命不屑。否则一旦失去，无可挽回。
+                     时间是什么？时间是一个谜，时间是一个在海边玩沙包的小男孩，时间看似匆匆，却不时让某一刻定格，教人挥之不去，遂成永久。这是影片给我的教益。
+                 </p>
+                 <img src=https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80 alt="加载失败">
+                 <p>
+                     席慕蓉：我不知道你们看了希腊导演安杰勒.普勒斯的那个电影没有，有一个电影叫做《永远的一天》，那么那个里面就是他讲，他当然有很多其他的细节，比方他讲到一段，就说一个从小不会母语的一个诗人，希腊诗人，终于回到希腊来了。那么他做什么事情呢？他向别人要求说，给我一个词汇，给我一个字，就是很多人就坐船过来跟他说一个字，比如说愉悦，或者有人过来跟他说一个（词），张望，或者有人跟他过来说回忆，他就靠着这么远的希腊人回来，一个一个跟他说了很多词句以后，然后他就写了一首歌颂他自己的原乡的一首诗，那么我自己的感觉是，我看了这个电影以后，看了两三遍以后才发现，我就是那个人，一个不会母语，也没有生长在原乡的土地上的这么一个人，我回来做的事情这十几年来就是我在追求细节，就是我的朋友在这个土地上怎么过日子，我的族群在这个土地上怎么形成这个文化，这个文化里的这个细节，对我有非常大的吸引力，所以前几年对我来讲，好像我的感觉是说，我回来是乡愁，因为我的乡愁，我要弥补我的乡愁，我要什么，但是这几年来我的感觉是，我对这个蒙古文化对我的一个吸引力，所以我充满了强烈的求知欲，我觉得这个土地对我有吸引力，而且对我有一种呼唤，那这个族群呢，也给我很大的温暖。
+                 </p>
+             </div>
+         </div>
+     </article>
+ </div>
+
+<!-- aside独立出来,不跟随页面一起旋转-->
+ <aside>
+     <ul>
+         <li><a href="#">Home</a></li>
+         <li>About</li>
+         <li>Contact</li>
+     </ul>
+ </aside>
+
+</body>
+
+<script>
+    //首先获取开关按钮
+    const open = document.getElementById('open');
+    const close = document.getElementById('close');
+    //接下来获取container
+    const container = document.getElementsByClassName('container')[0];
+    const circleContainer = document.getElementsByClassName('circle-container')[0];
+    console.log(typeof container);   //container的类型是object
+    open.onclick = function(){
+        //为container添加旋转类
+        console.log(typeof open);
+        console.log(container.classList);
+        container.classList.add('show-aside');
+        circleContainer.classList.add('show-aside');
+    }
+    close.onclick = function(){
+        container.classList.remove('show-aside');
+        circleContainer.classList.remove('show-aside');
+    }
+</script>
+
+</html>
