@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlurryLoading</title>
+</head>
+<body>
+    <div>
+        <div class="bg"></div>
+        <div class = "text">0%</div></div>
+    </div>
+</body>
+<style>
+    * {
+        /*margin:0;*/
+        /*实际上这个属性在本案例中基本无影响*/
+        box-sizing: border-box;
+    }
+    body {
+        /*flexbox模型*/
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        height:100vh;
+        margin:0;
+        overflow:hidden;
+    }
+    .bg {
+        background:url('https://images5.alphacoders.com/939/939923.jpg')
+        no-repeat center/cover;
+        /*绝对定位:相对于父元素继续定位,并且进行偏移*/
+        position:absolute;
+        top:0px;
+        left:0px;
+        width:calc(100vw + 30px);
+        height:calc(100vh + 30px);
+        /*z-index: -1;*/
+        /*当背景模糊以后,文字一同被模糊,如何解决????*/
+        /*filter:blur(30px);*/
+    }
+    /*截止到目前文字无法正常显示,猜测原因是因为top和left属性导致文字便宜到可是页面外部*/
+    .text{
+        color: white;
+        font-size: 60px;
+        text-align: center;
+        /*position:relative;*/
+        /*top:40vh;*/
+        /*z-index: 99;*/
+        opacity: 50%;
+    }
+
+</style>
+<script>
+    // 首先获取元素
+    const div = document.getElementsByClassName('bg')[0];
+    const text = document.getElementsByClassName('text')[0];
+
+    console.log(div);
+    var num = 100;
+    setInterval(()=>{
+        var str = 'blur('+num+'px)';
+        div.style.filter = str;
+        if(num>0){
+            num--;
+        }
+    },8);
+
+    var opacity = 100;
+    setInterval(()=>{
+        var str2 = opacity+'%';
+        text.innerHTML = str2;
+        text.style.opacity = str2;
+        if(opacity>0){
+            opacity--;
+        }
+    },8);
+
+</script>
+</html>
