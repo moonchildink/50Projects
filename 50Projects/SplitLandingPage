@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Split-Landing-Page</title>
+</head>
+<style>
+    * {
+        margin: 0;
+    }
+    article {
+        display: flex;
+        overflow-x: hidden;
+    }
+    .left {
+        background:url("https://images3.alphacoders.com/111/1111255.jpg"), rgba(2, 14, 239, 0.3);
+        /*不知道它原有的实现方式是什么,使用下面这个属性来实现颜色覆盖效果总是不是很好*/
+        /*background-blend-mode:darken;*/
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        height:100vh;
+        flex: 0.5;
+        transition-property: all;
+        transition-delay: revert;
+        transition-duration: 1000ms;
+        transition-timing-function: ease-in;
+        /*transition-delay: unset;*/
+
+    }
+    .inner-left>p {
+        min-width: 30vw;
+        text-align: center;
+        font-size: 60px;
+        font-family: "JetBrains Mono";
+    }
+    .show {
+        border:3px white solid;
+        width:20vw;
+        margin:0 auto;
+        transition: all 1000ms ease;
+    }
+    .show:hover {
+        background-color: rgb(2, 239, 168);
+        border-color: rgb(2, 239, 168);
+        color: linen;
+        cursor: pointer;
+    }
+    .show p{
+        font-size: 30px;
+        text-align: center;
+        font-family: Consolas;
+    }
+    .right {
+        background: url("https://images3.alphacoders.com/949/949504.jpg"),rgba(22,2,221,0.2);
+        /*background-blend-mode:darken;*/
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        height:100vh;
+        flex: 0.5;
+        overflow-x: hidden;
+        transition-property: all;
+        transition-delay: revert;
+        transition-duration: 1000ms;
+        transition-timing-function: ease;
+    }
+    .left:hover {
+        /*设置图片放大效果*/
+        transform:scale(0.8);
+        flex:2;
+    }
+    .right:hover {
+        transform:scale(0.8);
+        flex:2;
+    }
+</style>
+<body>
+<article>
+    <div class="left">
+        <div class="inner-left">
+            <p>Hongkong Doll</p>
+            <div class = 'show' id = 'left-button'><p>ShowDetail</p></div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="inner-left">
+            <p>Azhu</p>
+            <div class="show" id = 'right-button'><p>ShowMore</p></div>
+        </div>
+    </div>
+</article>
+</body>
+<script>
+    let leftButton = document.getElementById('left-button');
+    let rightButton = document.getElementById('right-button');
+    leftButton.addEventListener('click',()=>{
+        window.location.href = 'https://twitter.com/MyHongKongDoll';
+    })
+    rightButton.addEventListener('click',()=>{
+        window.location.href = 'https://twitter.com/4G3fJddYLwDAMzj';
+    })
+</script>
+</html>
