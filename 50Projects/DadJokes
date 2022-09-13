@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DadJokes</title>
+</head>
+<body>
+    <section>
+        <h3>Don't laugh challenge</h3>
+        <div class="content">Jokes Here</div>
+        <button class = 'btn'>Get another joke.</button>
+    </section>
+</body>
+<style>
+    *{
+        margin:0;
+    }
+    body{
+        background-color: #686de0;
+        font-family: "JetBrains Mono";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:100vw;
+        height:100vh;
+    }
+    section {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background-color: white;
+        width:50%;
+        /*height:50%;*/
+        border-radius: 20px;
+
+    }
+    section h3 {
+        color: darkgray;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 20px;
+        letter-spacing: 2px;
+    }
+    section .content {
+        line-height: 35px;
+        margin:45px auto;
+        font-size: 28px;
+        text-align: center;
+        width:100%;
+        max-width: 600px;
+        /*max-height: 80px;*/
+        min-height: 80px;
+    }
+    section button {
+
+        bottom: 50px;
+        border:none;
+        background-color: #9f68e0;
+        color: white;
+        width:200px;
+        height:50px;
+        border-radius: 15px;
+        margin:30px auto;
+        padding:10px 20px;
+        font-size: 20px;
+        box-shadow: 0px 5px 22px -5px #6E846F;
+    }
+    section button:active {
+        transform: scale(0.98);
+    }
+     button:focus{
+        cursor: pointer;
+    }
+</style>
+<script>
+    const jokes = document.getElementsByClassName('content')[0];
+    const btn = document.querySelectorAll('.btn')[0];
+    console.log(btn);
+    btn.addEventListener('click',getJoke);
+    getJoke()
+    async function getJoke(){
+        const config = {
+            headers:{
+                Accept:'application/json',
+            }
+        }
+
+
+        const res = await fetch('https://icanhazdadjoke.com',config);
+        const data = await res.json();
+
+        jokes.innerHTML = data.joke;
+    }
+</script>
+</html>
