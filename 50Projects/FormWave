@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FormWave</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        /*box-sizing: border-box;*/
+    }
+    body {
+        background:steelblue;
+        display: flex;
+        justify-content: center;
+        /*align-content: center;*/
+        align-items: center;
+        height:100vh;
+    }
+    .container {
+        background: rgba(0,0,0,0.3);
+        padding:15px;
+        border-radius: 5px;
+        color: white;
+        font-family: "JetBrains Mono";
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .container h2{
+        margin-top: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+        font-size: 30px;
+    }
+    .input {
+        position: relative;
+        margin:20px;
+    }
+    .input input {
+        background: transparent;
+        border: none;
+        border-bottom: 2px white solid;
+        width:100%;
+        color: white;
+        padding:10px;
+        font-size: 14px;
+    }
+    .input input:hover,
+    .input input:valid,
+    .input input:focus{
+        border-bottom-color: steelblue;
+        outline: none;
+        /*选中上方文字修改颜色*/
+    }
+    .input label {
+        position: absolute;
+        top:10px;
+    }
+    .input label span {
+        display: inline-block;
+        font-size: 18px;
+        min-width: 5px;
+        /*三次贝塞尔曲线,还需要学习*/
+        transition:300ms cubic-bezier(0.68,-0.55,0.265,1.55);
+    }
+    .input input:focus+label span,
+    .input input:valid+label span{
+        color: lightskyblue;
+        transform:translateY(-30px);
+    }
+    /*处理文字部分*/
+    .button-container{
+        display: flex;
+        justify-content: center;
+    }
+    .button {
+        border:none;
+        outline: none;
+        background: lightskyblue;
+        text-align: center;
+        padding:10px;
+        width:90%;
+        margin-bottom: 40px;
+        margin-top: 30px;
+        border-radius: 5px;
+        color: black;
+        font-family: "JetBrains Mono";
+        font-size: 15px;
+        user-select: none;
+    }
+    .button:hover{
+        cursor: pointer;
+    }
+    .button:active {
+        transform:scale(0.98);
+    }
+    a {
+        color: lightskyblue;
+        text-decoration: none;
+    }
+</style>
+<body>
+<article>
+    <div class="container">
+        <div>
+            <h2>Please Login</h2>
+        </div>
+        <div class="input">
+            <input id = 'email' type="text" required>
+            <label for="email" class = "label">Email</label>
+        </div>
+        <div class="input">
+            <input id = "password" type="password" required>
+            <label for="password" class = 'label'>Password</label>
+        </div>
+        <div class = 'button-container'><button id = 'btn' class="button">Login</button></div>
+        <div class="bottom-line">
+            Don't have an account?
+            <a href="#">Register</a>
+        </div>
+    </div>
+</article>
+<script>
+
+    // The Document method querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors.
+    const labels = document.querySelectorAll('.input label');
+    console.log(typeof labels[0]);
+    console.log(labels[0]);
+    labels.forEach(label=>{
+        label.innerHTML = label.innerText.split('').
+            map((letter,idx) => `<span style = 'transition-delay:${idx * 50}ms'>${letter}</span>`).join('');
+    });
+
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click',()=>{
+
+    })
+
+</script>
+</body>
+</html>
