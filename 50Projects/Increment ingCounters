@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta charset="UTF-8">
+    <title>IncrementingCounter</title>
+</head>
+<body>
+<div class="container">
+    <div id="twitter" class="divs"><span class="material-symbols-outlined">cabin</span> <p id = 'twitter-counter'>0</p><span>Twitter Followers</span></div>
+    <div id="youtube" class="divs">img <p id = 'Youtube-counter'>0</p><span>Youtube Subscribers</span></div>
+    <div id="facebook" class="divs">img <p id = 'Facebook-counter'>0</p><span>Facebook Fans</span></div>
+</div>
+<style>
+    *{
+        box-sizing: border-box;
+        margin:0px;
+    }
+    body {
+        background-color: #686de0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height:100vh;
+        width:100vw;
+        font-family: "JetBrains Mono";
+        color: white;
+    }
+    /*如何实现向左浮动时居中?*/
+    .container {
+        float: left;
+        margin:40px;
+    }
+    .divs {
+        float: left;
+        margin:40px;
+    }
+    .divs p{
+        font-size: 70px;
+    }
+     .material-symbols-outlined {
+         font-variation-settings:
+             'FILL' 0,
+             'wght' 400,
+             'GRAD' 0,
+             'opsz' 48
+     }
+</style>
+<script>
+    const twitter  = document.getElementById('twitter-counter');
+    const youtube = document.getElementById('Youtube-counter');
+    const facebook = document.getElementById('Facebook-counter');
+    let count = 0;
+    let youtubeCounter = 0;
+    let facebookCounter = 0;
+        setInterval(()=>{
+            if(count<12000) {
+                count += 100;
+                twitter.innerText = count;
+            }
+            if(youtubeCounter<5000 ){
+                youtubeCounter +=10;
+                youtube.innerText = youtubeCounter;
+            }
+            if( facebookCounter <10000){
+                facebookCounter+=80;
+                facebook.innerText = facebookCounter;
+            }
+        },0.1);
+    console.log('我是何佳棉');
+
+
+
+</script>
+</body>
+</html>
